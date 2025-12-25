@@ -1,66 +1,45 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import Image from "next/image"
 
-export default function Home() {
+async function getBlogs() {
+  const res = await fetch(
+    "http://localhost:1337/api/blogs?populate=*",
+    { cache: "no-store" }
+  )
+
+  const data = await res.json()
+  return data.data
+}
+
+export default async function Home() {
+  const blogs = await getBlogs()
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.js file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+    <div className="">
+      <h1 className="text-4xl font-semibold my-10">Blogs</h1>
+
+      {blogs.map((blog, index) => (
+        <div
+          key={index}
+          className="mb-8"
+        >
+          <h2 className="text-2xl font-semibold">
+            {blog.title}
+          </h2>
+          <h5 className="text-gray-500 text-sm mt-2 mb-5">
+            {blog.description[0].children[0].text}
+          </h5>
+          <div className="h-[400px]">
             <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+              src={`http://localhost:1337${blog.image.url}`}
+              width={1000}
+              height={1000}
+              alt={blog.title}
+              className="w-full h-full object-contain"
+              unoptimized
             />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+          </div>
         </div>
-      </main>
+      ))}
     </div>
-  );
+  )
 }
