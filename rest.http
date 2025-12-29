@@ -1,1 +1,15 @@
 GET http://localhost:1337/api/blogs
+
+###
+Get http://localhost:1337/api/headers?populate=*
+
+###
+Get http://localhost:1337/api/global?populate=*
+
+###
+GET http://localhost:1337/api/global?populate[topnav][populate]=*
+###
+GET http://localhost:1337/api/global?populate[topnav][populate][logolink][populate]=*
+
+###
+GET http://localhost:1337/api/landing-page?populate[heroBanner][populate]=*

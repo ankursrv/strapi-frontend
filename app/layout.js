@@ -1,6 +1,7 @@
 // import { Geist, Geist_Mono } from "next/font/google";
 import { cn } from "@/lib/utils";
 import "../styles/globals.scss";
+import Header from "@/components/organisms/header";
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -21,6 +22,7 @@ export default function RootLayout({ children, container }) {
   return (
     <html lang="en">
       <body>
+        <Header />
         <main className={cn(!container ? "container" :"")}>
           {children}
         </main>

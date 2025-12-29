@@ -1,45 +1,48 @@
-import Image from "next/image"
+"use client"
+import CustomImage from "@/components/molecules/customImage";
+import { useEffect, useState } from "react"
 
-async function getBlogs() {
-  const res = await fetch(
-    "http://localhost:1337/api/blogs?populate=*",
-    { cache: "no-store" }
-  )
 
-  const data = await res.json()
-  return data.data
-}
+// async function getHeroBanner() {
+//   const res = await fetch("http://localhost:1337/api/landing-page?populate[heroBanner][populate]=*",
+//     { cache: "no-store" }
+//   )
+//   const data = await res.json()
+//   return data
+// }
 
-export default async function Home() {
-  const blogs = await getBlogs()
+
+const Home = () => {
+  const [bannerData, setBannerData] = useState(null)
+  useEffect (()=>{
+    async function getHeroBanner() {
+      const res = await fetch("http://localhost:1337/api/landing-page?populate[heroBanner][populate]=*",
+        { cache: "no-store" }
+      )
+      const data = await res.json()
+      setBannerData(data)
+      console.log("Banner", data)
+    }
+    getHeroBanner();
+  },[]);
 
   return (
     <div className="">
-      <h1 className="text-4xl font-semibold my-10">Blogs</h1>
-
-      {blogs.map((blog, index) => (
-        <div
-          key={index}
-          className="mb-8"
-        >
-          <h2 className="text-2xl font-semibold">
-            {blog.title}
-          </h2>
-          <h5 className="text-gray-500 text-sm mt-2 mb-5">
-            {blog.description[0].children[0].text}
-          </h5>
-          <div className="h-[400px]">
-            <Image
-              src={`http://localhost:1337${blog.image.url}`}
-              width={1000}
-              height={1000}
-              alt={blog.title}
-              className="w-full h-full object-contain"
-              unoptimized
-            />
-          </div>
-        </div>
-      ))}
+      Home
+      {/* ✅ Safe rendering */}
+      <span>
+        {bannerData?.data?.heroBanner?.[0]?.smallText}
+      </span>
+      <span>
+       <CustomImage 
+       src={bannerData?.data?.heroBanner?.[0]?.image?.url}
+       width={1000}
+       height={1000}
+       />
+       
+      </span>
     </div>
   )
 }
+
+export default Home
