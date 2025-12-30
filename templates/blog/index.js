@@ -1,24 +1,27 @@
+"use client"
 import CustomImage from "@/components/molecules/customImage"
 import Header from "@/components/organisms/header"
+import { useEffect, useState } from "react"
 
 
-async function getBlogs() {
-  const res = await fetch(
-    "http://localhost:1337/api/blogs?populate=*",
-    { cache: "no-store" }
-  )
+const Blog = () => {  
+const [blogData, setBlogData] = useState(null)
 
-  const data = await res.json()
-  return data.data
-}
-
-const blogs = await getBlogs()
-
-const Blog = async () => {
+  useEffect (() => {
+    async function getBlogs() {
+      const res = await fetch("http://localhost:1337/api/blogs?populate=*",
+        { cache: "no-store" }
+      )
+      const data = await res.json()
+      setBlogData(data);
+    }
+    getBlogs();
+  }, [])
+  
   return (
     <div className="">
       <h1 className="text-4xl font-semibold my-10">Blogs</h1>
-      {blogs.map((blog, index) => (
+      {blogData?.data?.map((blog, index) => (
         <div
           key={index}
           className="mb-8"

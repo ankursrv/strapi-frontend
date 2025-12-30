@@ -10,11 +10,11 @@ body {
   padding-inline: 20px;
 }
 
-h1 {
+h1,h2,h3,h4,h5,h6 {
   color: #374151;
 }
 
-// Hero Banner 
+// Hero Banner Start
 .hero-banner-pagination {
   .swiper-pagination {
     position: relative;
@@ -44,3 +44,18 @@ h1 {
     }
                 
 }
+
+// END 
+
+// Image Responsive class Start 
+.responsive-image-cover{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.responsive-image-contain{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+// END 
