@@ -13,3 +13,6 @@ GET http://localhost:1337/api/global?populate[topnav][populate][logolink][popula
 
 ###
 GET http://localhost:1337/api/landing-page?populate[heroBanner][populate]=*
+
+###
+GET http://localhost:1337/api/landing-page?populate=*

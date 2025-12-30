@@ -24,7 +24,7 @@ const headerData = await getHeaders()
 const Header = () => {
   console.log("Full Data", headerData)
   return (
-    <header className="shadow-lg sticky top-0 bg-white">
+    <header className="shadow-lg sticky top-0 bg-white z-50">
       <div className="flex items-center justify-between py-8 container">
         <div className="flex items-center gap-2">
           {/* logo */}
