@@ -1,3 +1,14 @@
+### API Populate Example
+# GET http://localhost:1337/api/landing-page?populate[heroBanner][populate]=*&populate[productCards][populate]=*&populate[seeMoreButton][populate]=*
+# ```
+
+# **Breakdown:**
+# ```
+# ?populate[heroBanner][populate]=*          ← Pehla field
+# &populate[productCards][populate]=*        ← & lagake doosra
+# &populate[seeMoreButton][populate]=*       ← & lagake teesra
+
+
 GET http://localhost:1337/api/blogs
 
 ###
@@ -19,3 +30,24 @@ GET http://localhost:1337/api/landing-page?populate[productCards][populate]=*
 
 ###
 GET http://localhost:1337/api/landing-page?populate[productCards][populate]=*&populate=seeMoreButton
+
+# Hero Banner API 
+###
+GET http://localhost:1337/api/landing-page?populate[heroBanner][populate]=*
+
+# Product Cards API
+###
+GET http://localhost:1337/api/landing-page?populate[productCards][populate]=*
+
+# See More Button API 
+###
+GET http://localhost:1337/api/landing-page?populate[seeMoreButton][populate]=*
+
+### Sabse easy way
+GET http://localhost:1337/api/landing-page?populate[heroBanner][populate]=*&populate[productCards][populate]=*&populate[seeMoreButton]=*
+
+# Featured Product Card API 
+###
+GET http://localhost:1337/api/landing-page?populate[featuredCard][populate]=*
+
+
