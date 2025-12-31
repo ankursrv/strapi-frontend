@@ -1,5 +1,6 @@
 import HeroBanner from "@/components/molecules/heroBanner"
 import FeaturedProducts from "@/components/organisms/featuredProduct"
+import GamingExperience from "@/components/organisms/gamingExperience"
 import ProductCards from "@/components/organisms/productCard"
 
 
@@ -9,6 +10,7 @@ const Home = () => {
       <HeroBanner />
       <ProductCards />
       <FeaturedProducts />
+      <GamingExperience />
     </>
   )
 }

@@ -18,6 +18,7 @@ const CustomImage = ({
       alt={alt}
       className={className}
       unoptimized
+      loading="eager"
       {...props}
       />
     </>

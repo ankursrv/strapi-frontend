@@ -14,12 +14,6 @@ async function getHeaders() {
 }
 const headerData = await getHeaders()
 
-// const navItems = [
-//   { label: headerData.home, href : "/" },
-//   { label: headerData.about, href: "/about" },
-//   { label: headerData.contactUs, href: "/contact-us" },
-//   { label: headerData.blog, href: "/blog" },
-// ]
 
 const Header = () => {
   console.log("Full Data", headerData)
