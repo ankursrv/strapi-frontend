@@ -50,4 +50,13 @@ GET http://localhost:1337/api/landing-page?populate[heroBanner][populate]=*&popu
 ###
 GET http://localhost:1337/api/landing-page?populate[featuredCard][populate]=*
 
+# Gaming Experience API
+###
+GET http://localhost:1337/api/landing-page?populate[gamingExperience][populate]=* 
+
+# Product Details Page API 
+###
+GET http://localhost:1337/api/product-details-pages?populate=*
+###
+GET http://localhost:1337/api/product-details-pages?populate[pdpImage][populate]=*&populate[price][populate]=*&populate[productSpecification][populate]=*
 
