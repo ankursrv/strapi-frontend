@@ -60,3 +60,8 @@ GET http://localhost:1337/api/product-details-pages?populate=*
 ###
 GET http://localhost:1337/api/product-details-pages?populate[pdpImage][populate]=*&populate[price][populate]=*&populate[productSpecification][populate]=*
 
+###
+GET http://localhost:1337/api/products?populate[gallery][populate]=*&populate[category][populate]=[image][populate]=*
+
+###
+GET http://localhost:1337/api/products?filters[slug][$eq]=${slug}&populate=*

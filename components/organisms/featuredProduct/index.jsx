@@ -1,21 +1,30 @@
-"use client"
+// "use client"
 import CustomImage from "@/components/molecules/customImage"
 import Link from "next/link"
-import React, { useEffect, useState } from "react"
+// import React, { useEffect, useState } from "react"
 
-const FeaturedProducts = () => {
-  const [featuredProductData, setFeaturedProductData] = useState(null)
-  useEffect(() => {
-    async function getFeaturedProduct() {
-      const res = await fetch(
-        "http://localhost:1337/api/landing-page?populate[featuredCard][populate]=*",
-        { cache: "no-store" }
-      )
-      const data = await res.json()
-      setFeaturedProductData(data)
-    }
-    getFeaturedProduct()
-  }, [])
+async function getFeaturedProduct () {
+  const res = await fetch("http://localhost:1337/api/landing-page?populate[featuredCard][populate]=*",
+    {cache:"no-store"}
+  )
+  const data = await res.json()
+  return data.data.featuredCard
+}
+
+const FeaturedProducts = async () => {
+  const featuredData = await getFeaturedProduct()
+  // const [featuredProductData, setFeaturedProductData] = useState(null)
+  // useEffect(() => {
+  //   async function getFeaturedProduct() {
+  //     const res = await fetch(
+  //       "http://localhost:1337/api/landing-page?populate[featuredCard][populate]=*",
+  //       { cache: "no-store" }
+  //     )
+  //     const data = await res.json()
+  //     setFeaturedProductData(data)
+  //   }
+  //   getFeaturedProduct()
+  // }, [])
   return (
     <>
       <div className="flex flex-col justify-center items-center">
@@ -24,7 +33,7 @@ const FeaturedProducts = () => {
         <div className="w-28 h-0.5 bg-orange-600 mt-2" />
       </div>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 mb-20 mt-12 gap-8 lg:gap-14 px-14">
-        {featuredProductData?.data?.featuredCard?.map((item, index) => (
+        {featuredData?.map((item, index) => (
           <div key={index} className="relative group">
             <div className="relative">
               {/* overlay  */}
