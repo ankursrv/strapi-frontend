@@ -1,27 +1,38 @@
-"use client"
+// "use client"
 import CustomImage from "@/components/molecules/customImage"
-import Header from "@/components/organisms/header"
-import { useEffect, useState } from "react"
+// import Header from "@/components/organisms/header"
+// import { useEffect, useState } from "react"
 
+async function getBlog () {
+  const res = await fetch (
+    "http://localhost:1337/api/blogs?populate=*",
+    {cache: "no-store"}
+  )
+  const data = await res.json()
+  return data.data
+}
 
-const Blog = () => {  
-const [blogData, setBlogData] = useState(null)
+const Blog = async () => {
+  const blogData = await getBlog()  
 
-  useEffect (() => {
-    async function getBlogs() {
-      const res = await fetch("http://localhost:1337/api/blogs?populate=*",
-        { cache: "no-store" }
-      )
-      const data = await res.json()
-      setBlogData(data);
-    }
-    getBlogs();
-  }, [])
+  console.log("blog DAta", blogData)
+// const [blogData, setBlogData] = useState(null)
+
+//   useEffect (() => {
+//     async function getBlogs() {
+//       const res = await fetch("http://localhost:1337/api/blogs?populate=*",
+//         { cache: "no-store" }
+//       )
+//       const data = await res.json()
+//       setBlogData(data);
+//     }
+//     getBlogs();
+//   }, [])
   
   return (
     <div className="">
       <h1 className="text-4xl font-semibold my-10">Blogs</h1>
-      {blogData?.data?.map((blog, index) => (
+      {blogData?.map((blog, index) => (
         <div
           key={index}
           className="mb-8"
