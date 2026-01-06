@@ -65,3 +65,9 @@ GET http://localhost:1337/api/products?populate[gallery][populate]=*&populate[ca
 
 ###
 GET http://localhost:1337/api/products?filters[slug][$eq]=${slug}&populate=*
+
+###
+GET http://localhost:1337/api/products?populate[gallery][populate]=*
+
+###
+GET http://localhost:1337/api/products?populate[image]=*&populate[gallery]=*&populate[category]=*

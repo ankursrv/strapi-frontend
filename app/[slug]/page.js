@@ -1,7 +1,7 @@
 import ProductDetail from "@/components/organisms/productDetail"
 
 export default async function Page({ params }) {
-  // Next.js 15 me params async hai
+  
   const { slug } = await params
 
   return <ProductDetail slug={slug} />

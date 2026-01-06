@@ -4,7 +4,7 @@ import Image from "next/image"
 async function getProduct(slug) {
   try {
     const res = await fetch(
-      `http://localhost:1337/api/products?filters[slug][$eq]=${slug}&populate=*`,
+      `http://localhost:1337/api/products?filters[slug][$eq]=${slug}&populate[image]=true&populate[gallery][populate][image]=true&populate[category]=true`,
       { cache: "no-store" }
     )
 
@@ -22,7 +22,7 @@ async function getProduct(slug) {
   }
 }
 
-export default async function ProductDetail({ slug }) {
+const ProductDetail = async ({ slug }) => {
   const product = await getProduct(slug)
 
   if (!product) {
@@ -35,13 +35,14 @@ export default async function ProductDetail({ slug }) {
   }
 
   const imageUrl = product.image?.url
+  const galleryImages = product.gallery || []
 
   return (
     <div style={{ padding: "40px" }}>
       <h1>{product.title}</h1>
       <p>{product.description}</p>
 
-      {/* Temporary: Normal img tag */}
+      {/* Main Product Image */}
       {imageUrl ? (
         <CustomImage
           src={`http://localhost:1337${imageUrl}`}
@@ -54,6 +55,28 @@ export default async function ProductDetail({ slug }) {
         <p>No image available</p>
       )}
 
+      {/* Gallery Images */}
+      {galleryImages.length > 0 && (
+        <div style={{ marginTop: "30px" }}>
+          <div style={{ display: "flex", gap: "15px", flexWrap: "wrap" }}>
+            {galleryImages.map((item, index) => {
+              const galleryImageUrl = item.image?.url
+              return galleryImageUrl ? (
+                <CustomImage
+                  key={index}
+                  src={`http://localhost:1337${galleryImageUrl}`}
+                  width={200}
+                  height={200}
+                  alt={`${product.title} - Gallery ${index + 1}`}
+                  style={{ objectFit: "cover", border: "1px solid #ddd" }}
+                />
+              ) : null
+            })}
+          </div>
+        </div>
+      )}
+
+      {/* Category/Specifications */}
       {product.category && (
         <div style={{ marginTop: "20px", border: "1px solid #ccc", padding: "10px" }}>
           <h3>Specifications:</h3>
@@ -65,3 +88,5 @@ export default async function ProductDetail({ slug }) {
     </div>
   )
 }
+
+export default ProductDetail
