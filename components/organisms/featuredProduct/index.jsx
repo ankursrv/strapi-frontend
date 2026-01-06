@@ -50,7 +50,7 @@ const FeaturedProducts = async () => {
               <p className="text-sm lg:text-base leading-5 max-w-60 text-white">{item.description}</p>
               <Link href={item.href || "#"}>
                 <button className="flex items-center justify-center gap-1.5 bg-orange-600 px-4 py-2 rounded text-white mt-3">
-                  {item.link?.text}
+                  {item.link?.title}
                   <CustomImage
                     src="/images/icon/redirect_icon.svg"
                     width={500}

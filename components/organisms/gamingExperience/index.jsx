@@ -46,7 +46,7 @@ const GamingExperience = async () => {
         <h2 className="text-2xl md:text-3xl font-bold max-w-[290px]">{gamingData?.title}</h2>
         <p className="max-w-[343px] font-medium text-gray-800/60 my-3">{gamingData?.description}</p>
         <Link href={gamingData?.href || "#"}>
-          <button className="flex items-center justify-center gap-1 px-12 py-2.5 bg-orange-600 rounded text-white">{gamingData?.link?.text}</button>
+          <button className="flex items-center justify-center gap-1 px-12 py-2.5 bg-orange-600 rounded text-white">{gamingData?.link?.title}</button>
         </Link>
       </div>
       {gamingData?.image2?.url && (

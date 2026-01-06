@@ -1,5 +1,6 @@
 "use client"
 import CustomImage from "@/components/molecules/customImage"
+import { cn } from "@/lib/utils"
 import Link from "next/link"
 import React, { useEffect, useState } from "react"
 
@@ -77,10 +78,9 @@ const ProductCards = () => {
               {/* price  */}
               <div className="flex items-center justify-between mt-2">
                 <p className="text-base font-bold text-[#374151]">{item.currencySymbol}{item.price}</p>
-                {/* <Link href={item.button?.href || "#"} className="px-4 py-1.5 text-gray-500 border border-gray-500/20 rounded-full text-xs hover:bg-slate-50 transition">
-                  {item.button?.text}
-                </Link> */}
-                <button>{item.button?.text}</button>
+                <Link href={item.button?.href || "#"} className={cn(item.button?.href && "px-4 py-1.5 text-gray-500 border border-gray-500/20 rounded-full text-xs hover:bg-slate-50 transition")}>
+                  {item.button?.title}
+                </Link>
               </div>
             </div>
           </Link>
@@ -91,7 +91,7 @@ const ProductCards = () => {
         <div className="text-center">
           <Link href={seeMoreButton.href || "#"}>
             <button className="px-12 py-2.5 border border-gray-500/50 rounded text-gray-500/70 hover:bg-slate-50/90 transition">
-              {seeMoreButton.text}
+              {seeMoreButton.title}
             </button>
           </Link>
         </div>

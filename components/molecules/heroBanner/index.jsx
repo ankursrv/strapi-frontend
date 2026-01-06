@@ -15,6 +15,7 @@ async function getHeroBanner() {
 
 const HeroBanner = async () => {
   const heroBannerData = await getHeroBanner()
+  console.log("HeroBanner:", heroBannerData)
 
   return (
     <div className="hero-banner-pagination pagination-style1">
@@ -38,7 +39,7 @@ const HeroBanner = async () => {
                 {item.heroButton?.map((btn, index) => (
                   <Link
                     key={index}
-                    href={btn.href || "/"}
+                    href={btn.href || "#"}
                     className={cn(
                       "px-10 py-3 rounded-full font-semibold border transition-all duration-300",
                       index === 0
@@ -46,7 +47,7 @@ const HeroBanner = async () => {
                         : "hover:bg-[#ea580c] hover:text-white border-[#ea580c]"
                     )}
                   >
-                    {btn.text}
+                    {btn.title}
                   </Link>
                 ))}
               </div>
