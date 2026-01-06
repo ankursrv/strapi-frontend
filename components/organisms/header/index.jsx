@@ -12,11 +12,11 @@ async function getHeaders() {
   const data = await res.json()
   return data
 }
-const headerData = await getHeaders()
 
 
-const Header = () => {
-  console.log("Full Data", headerData)
+const Header = async () => {
+  const headerData = await getHeaders()
+  console.log("HeaderData", headerData)
   return (
     <header className="shadow-lg sticky top-0 bg-white z-50">
       <div className="flex items-center justify-between py-8 container">
@@ -36,7 +36,7 @@ const Header = () => {
           <ul className="flex items-center justify-center gap-8 *:font-semibold *:text-lg">
             {headerData?.data?.topnav?.link?.map((item, index) => (
               <li key={index}>
-                <Link href={item.href}>{item.text}</Link>
+                <Link href={item.href || "#"}>{item.title}</Link>
               </li>
             ))}
             {/* <span>{headerData?.data?.topnav?.link?.text}</span> */}
@@ -44,8 +44,8 @@ const Header = () => {
         </nav>
         <div className="flex items-center gap-5">
           {/* <button className="border px-5 h-[38px] rounded-md flex items-center font-semibold cursor-pointer">{headerData.login}</button> */}
-          <Link href={headerData?.data?.topnav?.cta?.href}>
-            <button className="border px-5 h-[38px] rounded-md flex items-center font-semibold cursor-pointer hover:bg-orange-400 hover:border-orange-400 duration-300">{headerData?.data?.topnav?.cta?.text}</button>
+          <Link href={headerData?.data?.topnav?.cta?.link || "#"}>
+            <button className="border px-5 h-[38px] rounded-md flex items-center font-semibold cursor-pointer hover:bg-orange-400 hover:border-orange-400 duration-300">{headerData?.data?.topnav?.cta?.title}</button>
           </Link>
         </div>
       </div>
